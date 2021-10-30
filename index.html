@@ -5,18 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="app.js"></script>
-    <link rel="stylesheet" href="styles.css" />
-    <title>Is Your Birthday A Palindrome?</title>
+    <title>Palinedrome Birthday</title>
   </head>
+
   <body>
-    <h1>Is Your Birthday A Palindrome?</h1>
-    <h2>Enter your Birthdate to know if it is a Palindrome</h2>
-    <form>
-      <input type="date" name="birthdayInput" id="birthdayInput" />
-    </form>
-    <button class="checkBtn">Check</button>
-    <div class="output">
+    <main>
+      <h1>Palindrome Birthday!</h1>
+      <div class="container">
+        <label class="input-label">Enter your birthday date:</label>
+        <input class="input" id="bday-input" type="date" />
       </div>
-    </div>
+      <div class="show-btn">
+        <button id="show-btn">Show</button>
+      </div>
+
+      <div class="result"></div>
+    </main>
   </body>
 </html>
