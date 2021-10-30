@@ -1,4 +1,4 @@
-const bdayInput = document.querySelector("#bday-input");
+const birthdayInput = document.querySelector("#birthday-input");
 const showBtn = document.querySelector("#show-btn");
 const resultDiv = document.querySelector(".result");
 
@@ -167,3 +167,48 @@ function getPreviousPalindromeDate(date) {
     previousDate = getPreviousDate(previousDate);
   }
 }
+
+function clickHandler(e) {
+  const birthdayString = birthdayInput.value;
+
+  if (birthdayString !== "") {
+    let date = birthdayString.split("-");
+    const yyyy = date[0];
+    const mm = date[1];
+    const dd = date[2];
+
+    date = {
+      day: Number(dd),
+      month: Number(mm),
+      year: Number(yyyy),
+    };
+
+    const dateStr = getDateAsString(date);
+    const list = checkPalindromeForAllDateFormats(dateStr);
+    const isPalindrome = false;
+
+    for (let i in list) {
+      if (list[i]) {
+        isPalindrome = true;
+        break;
+      }
+    }
+
+    if (!isPalindrome) {
+      const [ctr1, nextDate] = getNextPalindromeDate(date);
+      const [ctr2, prevDate] = getPreviousPalindromeDate(date);
+
+      if (ctr1 > ctr2) {
+        resultDiv.innerText = `The nearest palindrome date is ${prevDate.day}-${prevDate.month}-${prevDate.year}, you missed it by ${ctr2} days.`;
+      } else {
+        resultDiv.innerText = `The nearest palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${ctr1} days.`;
+      }
+    } else {
+      resultDiv.innerText = "Your birthday is a palindrome!";
+    }
+  } else {
+    resultDiv.innerText = "Please Enter The Date!";
+  }
+}
+
+showBtn.addEventListener("click", clickHandler);
